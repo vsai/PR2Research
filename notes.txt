@@ -1,0 +1,149 @@
+pocketsphinx - speech recognizer written in Java
+
+cmusphinx keeps popping up everywhere
+
+https://github.com/mikeferguson/pocketsphinx.git
+
+speech recognizer, using streamer and a Python-based interface
+
+pyspeech - only available for windows
+
+hark
+wiki.ros.org/hark
+
+voice isolation
+
+
+Libraries that may help in audio processing the input streams
+https://wiki.python.org/moin/PythonInMusic
+
+
+problems to solve:
+1. overcoming the loud noise from the fans of the robot
+  - word prediction based on frequent word and command history
+  - low-pass filter
+  - voice isolation
+
+2. speech recognition
+
+3. set of input commands
+  - which precise set of input commands to implement
+  - need not be responsive as of yet
+
+
+
+later scope of project
+-> interaction with robot. asking questions based on decisions it could make
+-> 
+
+
+
+
+
+listen - w/ timeout
+listen for - listening for specific things
+
+
+
+cmusphinx was running on a separate process
+
+
+wiki.ros.org/pocketsphinx
+
+listen for input and output the string to a separate node
+
+
+
+Ubuntu 10.0.4
+- 12.0.4
+
+
+===========================================
+---------------pocketsphinx -> wrapper around cmusphinx
+
+
+===========================================
+--------------google speech API
+Actual API Docs: https://gist.github.com/alotaiba/1730160
+Example using API (with resampling): https://gist.github.com/ederwander/1342497
+
+NOTE: ONLY ACCEPTS AUDIO FILES OF 15 SECONDS OR LESS
+http://www.google.com/intl/en/chrome/demos/speech.html
+
+
+http://panstamp.blogspot.com/2011/04/speech-recognition-from-google-new.html
+Sampling rate must be 16kHz
+Must send a .flac file
+
+
+
+Linux command to do from command line:
+http://robertbuzink.com/2011/hack-into-the-google-chrome-beta-speech-recognition-api/
+
+
+
+http://wiki.openmoko.org/wiki/Google_Voice_Recognition
+-- Sox -> for converting WAV into FLAC files
+http://sox.sourceforge.net/
+
+
+sox output.wav output.flac remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither
+
+libFLAC
+
+For SOX INSTALLATION - FLAC if it doesn't get automatically installed
+
+https://xiph.org/flac/
+https://xiph.org/flac/download.html
+
+
+./configure --disable-asm-optimizations
+http://stackoverflow.com/questions/8694676/compiling-64-bit-flac-libflac-in-os-x-lion
+
+
+
+MAKE SURE TO INSTALL FLAC BEFORE INSTALLATION OF SOX / TRY INSTALLING SOX, AND AFTER CONFIGURE IF IT SAYS FLAC --- no, THEN INSTALL FLAC AND THEN RE-CONFIGURE & MAKE SOX
+
+
+
+------CURRENT run style
+python recording.py
+sox output.wav o.flac remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither
+python speech.py
+
+
+
+
+
+===========================================
+-------------Nuance
+
+==========================================
+numpy
+
+
+Actual recording pyaudio of data
+http://people.csail.mit.edu/hubert/pyaudio/
+
+http://people.csail.mit.edu/hubert/pyaudio/docs/
+
+
+
+Detect & Record Audio 
+http://stackoverflow.com/questions/892199/detect-record-audio-in-python
+
+
+
+
+
+
+
+Q: How to do the noise reduction
+
+There are multiple levels to fight with noise and corruption of the audio. Noise cancellation algorithm modify the audio itself, feature denoising can cleanup features. You can also reduce noise and mismatch in model level, just by adapting the model.
+
+CMUSphinx doesn't have embedded tools for noise cancellation right now. You need to use external tool. There are quite many noise cancellation implementations out there. You can use any of them as preprocessing step before you feed audio into the speech recognizer.
+
+When you select noise cancellation implementation, you need to know that many noise cancellation algorithms corrupts speech spectrum in unusual ways and reduce speech recognition accuracy even more than the noise itself. For that reason you need to be very careful when selecting the noise cancellation algorithm. Only some of them like Ephraim Malach or Kalman will work properly.
+
+A reasonable way to fight with noise is to adapt the model or train it on a noisy audio. MLLR adaptation usually compensates quite significant part of the noise corruption.

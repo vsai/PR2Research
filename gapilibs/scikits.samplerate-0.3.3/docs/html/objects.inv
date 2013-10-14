@@ -1,0 +1,6 @@
+# Sphinx inventory version 1
+# Project: samplerate
+# Version: 0.3.3
+scikits.samplerate.resample function fullapi.html
+scikits.samplerate.convertor_description function fullapi.html
+scikits.samplerate.available_convertors function fullapi.html
