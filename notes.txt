@@ -97,9 +97,34 @@ https://xiph.org/flac/
 https://xiph.org/flac/download.html
 
 
+
+sox output.wav -n trim 0 3 noiseprof speech.noise-profile
+sox output.wav cleaned.wav noisered speech.noise-profile 0.1
+
+2nd Command) Amount of noise to remove from the signal. A number between 0 and 1 with a default of 0.5. Higher numbers will remove more noise but present a greater likelihood of removed wanted components of the audio signal.
+
+
+
 ./configure --disable-asm-optimizations
 http://stackoverflow.com/questions/8694676/compiling-64-bit-flac-libflac-in-os-x-lion
 
+
+SNR refers to the Signal-to-Noise Ratio
+SNR = (P_signal / P_noise) = (A_signal / A_noise)^2
+where P is the average power. 
+
+V = IR
+In signal processing and communication, R = 1. =>> P = (V_rms)^2 = (A^2)/2
+
+
+ 
+
+
+Noise reduction techniques
+-> EQing
+-> spectral subtraction - (Wiener and Kalman filtering methods)
+-> Iterative Power Subtraction (IPS) method where a precalculated amount of power is subtracted from the noisy signal
+-> 
 
 
 MAKE SURE TO INSTALL FLAC BEFORE INSTALLATION OF SOX / TRY INSTALLING SOX, AND AFTER CONFIGURE IF IT SAYS FLAC --- no, THEN INSTALL FLAC AND THEN RE-CONFIGURE & MAKE SOX
@@ -110,6 +135,20 @@ MAKE SURE TO INSTALL FLAC BEFORE INSTALLATION OF SOX / TRY INSTALLING SOX, AND A
 python recording.py
 sox output.wav o.flac remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither
 python speech.py
+-------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
