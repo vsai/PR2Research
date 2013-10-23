@@ -1,0 +1,8 @@
+prefix=/home/vishalsai/Documents/PR2Research/pr2go/v3ws/install
+
+Name: yoloswag
+Description: Description of yoloswag
+Version: 0.0.0
+Cflags: -I/home/vishalsai/Documents/PR2Research/pr2go/v3ws/install/include
+Libs: -L/home/vishalsai/Documents/PR2Research/pr2go/v3ws/install/lib 
+Requires: 

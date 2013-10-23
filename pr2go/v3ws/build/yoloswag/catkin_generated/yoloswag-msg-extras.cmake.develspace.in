@@ -1,0 +1,2 @@
+set(yoloswag_MESSAGE_FILES "")
+set(yoloswag_SERVICE_FILES "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv;/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/RecordAudio.srv")

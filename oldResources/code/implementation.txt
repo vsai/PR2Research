@@ -1,0 +1,30 @@
+Multi-threads
+
+T1 - [0,5)
+T2 - [3,8)
+T3 - [6,11)
+T4 - [9,14)
+T5 - [12,17)
+etc.
+
+
+
+Each thread recording duration is 5 seconds
+
+Start at 3 second differences
+
+Spawn a new thread EVERY 5 seconds. That way, we are not dependent on (processing time + API response) < 10 seconds.
+
+Thread terminates on logging data from API response.
+
+
+File naming conventions:
+
+Noise - speech.noise-profile
+
+Recorded audio - raw/<threadname>.wav
+
+Cleaned audio - cleaned/<threadname>.wav
+
+Resampled+Converted audio - flac/<threadname>.flac
+

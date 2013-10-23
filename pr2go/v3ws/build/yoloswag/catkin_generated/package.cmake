@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "yoloswag")
+set(yoloswag_MAINTAINER "vishalsai <vishalsai@todo.todo>")
+set(yoloswag_DEPRECATED "")
+set(yoloswag_VERSION "0.0.0")
+set(yoloswag_BUILD_DEPENDS "rospy" "std_msgs")
+set(yoloswag_RUN_DEPENDS "rospy" "std_msgs")
+set(yoloswag_BUILDTOOL_DEPENDS "catkin")

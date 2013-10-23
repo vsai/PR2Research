@@ -1,0 +1,30 @@
+TODO:
+
+setup vim properly
+add alias for "source ~/catkin_ws/devel/setup.bash"
+
+
+- init script
+- server + client
+
+
+
+roslaunch
+
+Initialize
+1. Activate Python Virtual Environment
+2. Record noise sample
+3. Generate noise profile and save that
+
+Run
+1st service call
+4. Record speech audio and save audio file
+5. Clean file, resample and convert audio file to flac (scripts - SOX)
+6. Speech to text API request
+7. Parse text and assert which words are said
+
+2nd service call
+8. Mapping of action to robot
+
+Cleanup
+9. Clean audio files

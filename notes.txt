@@ -1,3 +1,23 @@
+NEXT TODOS:
+0) Better audio processing on the input data, filtering out sound from the robot
+	- EQing
+	- Sound profiling and noise subtraction
+1) Handle garbage collection of audio files once done processing
+	- Delete all files upon successful response from Google API server -> Better scope for recovery?
+	- Write the .wav and .flac to tempfiles which get deleted at the end.
+2) Recovery if Google API responds without any data -> ex. Don't delete the audio file and re-process it. Or robot can ask user what they said.
+3) Logging
+	- Log Google API calls.
+	- Log recording (start and end timing)
+4) Multi-threading the input sentences and piecing them back together
+	- perhaps have a thread spawner that spawns a new thread every 10 seconds, and that thread is responsible for those particular 10 seconds. once that thread terminates, it can be ended. This will allow a sequential ID to be placed on the thread with which we can piece together back the data.
+
+
+
+http://en.wikipedia.org/wiki/Dynamic_time_warping
+
+
+
 pocketsphinx - speech recognizer written in Java
 
 cmusphinx keeps popping up everywhere
