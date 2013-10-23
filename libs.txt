@@ -1,0 +1,10 @@
+USED = U
+NOT USED = N
+
+
+Python
+
+N scikits.samplerate
+N audiotools
+N speech
+
