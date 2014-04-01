@@ -1,15 +1,30 @@
 #!/usr/bin/python
 
-print "HELLO WORLD FROM RECORDING AUDIO ON SERVER"
-
 import time
 import datetime
 import urllib2
 import json
 import pyaudio
 import wave
+import os
 from yoloswag.srv import *
 import rospy
+
+"""
+	TODO: record speech.noise-profile
+	TODO: check speech.noise-profile is in the right directory
+"""
+
+path_to_speech_profile = 'speech.noise-profile'
+base_dir = 'files/'
+
+def generateNoiseProfile():
+	noise_path = 'noise.wav'
+	print ('** generating noise profile')
+	record(5, noise_path)
+    	os.system('sox ' + noise_path + ' -n trim 0 5 noiseprof ' + path_to_speech_profile)
+    	print ('** done generating noise profile')
+   	return
 
 def record(seconds, filename):
 	CHUNK = 1024
@@ -44,22 +59,31 @@ def record(seconds, filename):
 	
 	return True
 
-def txt_to_speech(flac_filename):
-	import urllib2
-	import json
+def speech_to_txt(flac_filename):
 	url = "https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"
-	audio = open(flac_filename, 'rb').read()
-	headers={'Content-Type': 'audio/x-flac; rate=16000', 'User-Agent':'Mozilla/5.0'}
-	request = urllib2.Request(url, data=audio, headers=headers)
-	response = urllib2.urlopen(request)
-	r = response.read()
+    	audio = open(flac_filename, 'rb').read()
+    	headers={'Content-Type': 'audio/x-flac; rate=16000', 'User-Agent':'Mozilla/5.0'}
+    	request = urllib2.Request(url, data=audio, headers=headers)
+    	response = urllib2.urlopen(request)
+   	r = response.read()
+    	print r	
 	return json.loads(r)
 
 def dothis(record_time, filename_base):
 	if (record_time < 1 or record_time > 15):
 		return "ERROR: record time requested out of range [1-15]"
-	base_dir = "files/	
-	record(record_time, base_dir + filename_base+'_output_.wav')
+	output = base_dir + filename_base + '_output.wav'
+	clean = base_dir + filename_base + '_cleaned.wav'
+	flac = base_dir + filename_base + '.flac'
+	record(record_time, output)
+	os.system('sox ' + output + ' ' + clean + ' noisered ' + path_to_speech_profile + ' 0.1')
+	os.system('sox ' + clean + ' ' + flac + ' remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither')
+	result = speech_to_txt(flac)
+	hypotheses = result.get('hypotheses')
+	utterance = ''	
+	if (len(hypotheses) > 0):
+		utterance = (hypotheses[0]).get('utterance')	
+	return utterance	
 
 def handle_record_audio(req):
 	print "Returning string of audio recorded"
@@ -72,9 +96,15 @@ def handle_record_audio(req):
 def record_audio_server():
 	rospy.init_node('record_audio_server')
 	s = rospy.Service('record_audio', RecordAudio, handle_record_audio)
-	print "Ready to record audio"
+	print "Service setup - Ready to record audio"
 	rospy.spin()
 
 if __name__ == "__main__":
+	if not os.path.exists(path_to_speech_profile):
+		generateNoiseProfile()
+	if not os.path.exists(base_dir):
+		os.makedirs(base_dir)
+
+	print "HELLO WORLD FROM RECORDING AUDIO ON SERVER"
 	record_audio_server()
 

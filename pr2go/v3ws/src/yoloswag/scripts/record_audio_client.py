@@ -18,6 +18,18 @@ def record_audio_client(duration):
 def usage():
 	return "Input a valid duration <int>"
 
+def parse_text(utterance):
+    words = utterance.split()
+    def f(x):
+        possible_cmds = ['left', 'right', 'up', 'down']
+        return (x in possible_cmds)
+    return filter(f, words)
+
+def handle_text(utterance):
+    cmds = parse_text(utterance)
+    print cmds
+    return cmds
+
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
 		duration = int(sys.argv[1])
@@ -25,6 +37,7 @@ if __name__ == "__main__":
 		print usage()
 		sys.exit(1)
 
-	
 	print "Requesting recording duration %s"%(duration)
-	print "Result: %s"%(record_audio_client(duration))
+	utterance = record_audio_client(duration)
+    print "Result: %s"%(utterance)
+    handle_text(utterance)
