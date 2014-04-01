@@ -33,6 +33,10 @@ IF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/yoloswag/msg" TYPE FILE FILES "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/msg/Velocity.msg")
+ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
+
+IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/yoloswag/srv" TYPE FILE FILES
     "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv"
     "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/RecordAudio.srv"
