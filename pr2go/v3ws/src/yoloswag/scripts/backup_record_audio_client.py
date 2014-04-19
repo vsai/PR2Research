@@ -1,32 +1,41 @@
 #!/usr/bin/python
+#import roslib; roslib.load_mainifest('yoloswag')
 
 import sys
+
 import rospy
 from yoloswag.srv import *
 from yoloswag.msg import *
 
-cmds = ['left', 'right', 'up', 'down']
-
-def record_audio_client(duration, commands):
+def record_audio_client(duration, cmds):
 	rospy.wait_for_service('record_audio')
 	try:
 		record_audio = rospy.ServiceProxy('record_audio', RecordAudio)
-		resp1 = record_audio(duration, commands)
-        rospy.loginfo("Hypothesis: %s", resp1.hypothesis)
+		resp1 = record_audio(duration, cmds)
+		print "PRINT RESP1.HYPOTHESIS"	
+		print resp1.hypothesis	
 		return resp1.hypothesis
 	except rospy.ServiceException, e:
-        rospy.logerr("Service called failed : %s", e)
+		print "Service call failed: %s"%e
 
 def usage():
-    rospy.logerr("Input a valid duration <int>")
-    return
+	return "Input a valid duration <int>"
 
-def handle_text(result_cmds):
+#def parse_text(utterance):
+#    	words = utterance.split()
+#    	def f(x):
+#        	possible_cmds = ['left', 'right', 'up', 'down']
+#        	return (x in possible_cmds)
+#    	return filter(f, words)
+
+def handle_text(utterance):
+    	#cmds = parse_text(utterance)
+    	cmds = utterance	
+	print cmds
    	pub = rospy.Publisher('/turtle1/command_velocity', Velocity)
 	rospy.init_node('talker', anonymous=True)
 	r = rospy.Rate(0.5)
-    r.sleep()
-	for i in result_cmds:
+	for i in cmds:
 		rospy.loginfo(i)
 		msg = Velocity()
 		if (i == 'left'):
@@ -46,7 +55,7 @@ def handle_text(result_cmds):
 			msg.angular = 0.0
 		pub.publish(msg)
 		r.sleep()	
-    return result_cmds
+    	return cmds
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
@@ -54,11 +63,11 @@ if __name__ == "__main__":
 	else:
 		print usage()
 		sys.exit(1)
-    	
-    rospy.loginfo("Requesting recording duration %s", duration)
-	result_cmds = record_audio_client(duration, cmds)
-
-    try:
-        handle_text(utterance)
+	cmds = ['left', 'right', 'up', 'down']
+	print "Requesting recording duration %s"%(duration)
+	utterance = record_audio_client(duration, cmds)
+    	print "Result: %s"%(utterance)
+    	try:	
+		handle_text(utterance)
 	except rospy.ROSInterruptException: pass
 
