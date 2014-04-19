@@ -12,20 +12,20 @@ def record_audio_client(duration, commands):
 	try:
 		record_audio = rospy.ServiceProxy('record_audio', RecordAudio)
 		resp1 = record_audio(duration, commands)
-        rospy.loginfo("Hypothesis: %s", resp1.hypothesis)
+    rospy.loginfo("Hypothesis: %s", resp1.hypothesis)
 		return resp1.hypothesis
 	except rospy.ServiceException, e:
-        rospy.logerr("Service called failed : %s", e)
+    rospy.logerr("Service called failed : %s", e)
 
 def usage():
-    rospy.logerr("Input a valid duration <int>")
-    return
+  rospy.logerr("Input a valid duration <int>")
+  return
 
 def handle_text(result_cmds):
-   	pub = rospy.Publisher('/turtle1/command_velocity', Velocity)
+  pub = rospy.Publisher('/turtle1/command_velocity', Velocity)
 	rospy.init_node('talker', anonymous=True)
 	r = rospy.Rate(0.5)
-    r.sleep()
+  r.sleep()
 	for i in result_cmds:
 		rospy.loginfo(i)
 		msg = Velocity()
@@ -46,7 +46,7 @@ def handle_text(result_cmds):
 			msg.angular = 0.0
 		pub.publish(msg)
 		r.sleep()	
-    return result_cmds
+  return result_cmds
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
@@ -55,10 +55,10 @@ if __name__ == "__main__":
 		print usage()
 		sys.exit(1)
     	
-    rospy.loginfo("Requesting recording duration %s", duration)
+  rospy.loginfo("Requesting recording duration %s", duration)
 	result_cmds = record_audio_client(duration, cmds)
 
-    try:
-        handle_text(utterance)
+  try:
+    handle_text(utterance)
 	except rospy.ROSInterruptException: pass
 

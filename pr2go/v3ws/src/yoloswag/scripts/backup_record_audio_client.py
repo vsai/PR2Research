@@ -29,10 +29,10 @@ def usage():
 #    	return filter(f, words)
 
 def handle_text(utterance):
-    	#cmds = parse_text(utterance)
-    	cmds = utterance	
+  #cmds = parse_text(utterance)
+  cmds = utterance	
 	print cmds
-   	pub = rospy.Publisher('/turtle1/command_velocity', Velocity)
+  pub = rospy.Publisher('/turtle1/command_velocity', Velocity)
 	rospy.init_node('talker', anonymous=True)
 	r = rospy.Rate(0.5)
 	for i in cmds:
@@ -55,7 +55,7 @@ def handle_text(utterance):
 			msg.angular = 0.0
 		pub.publish(msg)
 		r.sleep()	
-    	return cmds
+  return cmds
 
 if __name__ == "__main__":
 	if len(sys.argv) == 2:
@@ -66,8 +66,8 @@ if __name__ == "__main__":
 	cmds = ['left', 'right', 'up', 'down']
 	print "Requesting recording duration %s"%(duration)
 	utterance = record_audio_client(duration, cmds)
-    	print "Result: %s"%(utterance)
-    	try:	
+  print "Result: %s"%(utterance)
+  try:	
 		handle_text(utterance)
 	except rospy.ROSInterruptException: pass
 

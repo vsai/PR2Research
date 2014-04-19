@@ -16,19 +16,18 @@ base_dir = 'files/'
 
 def generateNoiseProfile():
 	noise_path = 'noise.wav'
-    rospy.loginfo("** Start generating noise profile - Path: %s", path_to_speech_profile)
+  rospy.loginfo("** Start generating noise profile - Path: %s", path_to_speech_profile)
 	record(5, noise_path)
-    #Generate a noise profile based on the noise audio just recorded (trim to 5 seconds)
-    os.system('sox ' + noise_path + ' -n trim 0 5 noiseprof ' + path_to_speech_profile)
-    rospy.loginfo("** Done generating noise profile")	
+  #Generate a noise profile based on the noise audio just recorded (trim to 5 seconds)
+  os.system('sox ' + noise_path + ' -n trim 0 5 noiseprof ' + path_to_speech_profile)
+  rospy.loginfo("** Done generating noise profile")	
     
-    rospy.debug("Cleaning files")
-    try:
-        os.remove(noise_path)
-    except:
-        rospy.logerr("Not able to delete noise audio file: %s", noise_path)
-    
-    return
+  rospy.debug("Cleaning files")
+  try:
+    os.remove(noise_path)
+  except:
+    rospy.logerr("Not able to delete noise audio file: %s", noise_path)  
+  return
 
 def record(seconds, filename):
 	CHUNK = 1024
@@ -43,8 +42,8 @@ def record(seconds, filename):
 			input=True, 
 			frames_per_buffer=CHUNK)
 	
-    rospy.loginfo("** Recording")	
-    frames = []
+  rospy.loginfo("** Recording")	
+  frames = []
 	for i in xrange(0, int(RATE / CHUNK * seconds)):
 		data = stream.read(CHUNK)
 		frames.append(data)
@@ -64,19 +63,19 @@ def record(seconds, filename):
 	return True
 
 def speech_to_txt(flac_filename):
-    rospy.logdebug("Submitting speech file to API to receive response")	
-    url = "https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"
-    audio = open(flac_filename, 'rb').read()
-    headers={'Content-Type': 'audio/x-flac; rate=16000', 'User-Agent':'Mozilla/5.0'}
+  rospy.logdebug("Submitting speech file to API to receive response")	
+  url = "https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"
+  audio = open(flac_filename, 'rb').read()
+  headers={'Content-Type': 'audio/x-flac; rate=16000', 'User-Agent':'Mozilla/5.0'}
 	request = urllib2.Request(url, data=audio, headers=headers)
-    response = urllib2.urlopen(request)
+  response = urllib2.urlopen(request)
 	r = response.read()
-    rospy.logdebug("Received response from API: %s", r)
+  rospy.logdebug("Received response from API: %s", r)
 	return json.loads(r)
 
 def clean_audio(output, clean, flac):
-    #Process the output file and clean it and provide a  resampled flac file
-    os.system('sox ' + output + ' ' + clean + ' noisered ' + path_to_speech_profile + ' 0.3 remix - norm -3 highpass 22 gain -3 norm -3 dither')
+  #Process the output file and clean it and provide a  resampled flac file
+  os.system('sox ' + output + ' ' + clean + ' noisered ' + path_to_speech_profile + ' 0.3 remix - norm -3 highpass 22 gain -3 norm -3 dither')
 	#os.system('sox ' + clean + ' ' + flac + ' remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither')
 	os.system('sox ' + clean + ' ' + flac + ' rate 16k')	
 	
@@ -89,9 +88,9 @@ def dothis(record_time, cmds, filename_base):
 	flac = base_dir + filename_base + '.flac'
 	record(record_time, output)
     
-    clean_audio(output, clean, flac)	
+  clean_audio(output, clean, flac)	
     
-    result = speech_to_txt(flac)
+  result = speech_to_txt(flac)
 	hypotheses = result.get('hypotheses')
 	print hypotheses	
 	utterance = ''	
@@ -105,11 +104,11 @@ def dothis(record_time, cmds, filename_base):
 	return result	
 
 def handle_record_audio(req):
-    rospy.loginfo("Requested to record for %s seconds", req.d)	
+  rospy.loginfo("Requested to record for %s seconds", req.d)	
 	filename_base = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%d_%H-%M-%S')
 	hyp = dothis(req.d, req.cmds, filename_base)
     
-    return RecordAudioResponse(hyp)	
+  return RecordAudioResponse(hyp)	
 
 def record_audio_server():
 	rospy.init_node('record_audio_server', log_level=rospy.DEBUG)
@@ -124,6 +123,6 @@ if __name__ == "__main__":
 	if not os.path.exists(base_dir):
 		os.makedirs(base_dir)
 
-    rospy.loginfo("Initializing rospy audio server")
-    record_audio_server()
+  rospy.loginfo("Initializing rospy audio server")
+  record_audio_server()
 
