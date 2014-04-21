@@ -6,6 +6,4 @@
   :components ((:file "_package")
     (:file "RecordAudio" :depends-on ("_package_RecordAudio"))
     (:file "_package_RecordAudio" :depends-on ("_package"))
-    (:file "AddTwoInts" :depends-on ("_package_AddTwoInts"))
-    (:file "_package_AddTwoInts" :depends-on ("_package"))
   ))

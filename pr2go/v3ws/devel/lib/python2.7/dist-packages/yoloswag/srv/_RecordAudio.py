@@ -6,14 +6,15 @@ import struct
 
 
 class RecordAudioRequest(genpy.Message):
-  _md5sum = "456d5ec057ad0a3f8690a01e5c616f91"
+  _md5sum = "d51782f63141dfbce4a66ec61e781595"
   _type = "yoloswag/RecordAudioRequest"
   _has_header = False #flag to mark the presence of a Header object
   _full_text = """int64 d
+string[] cmds
 
 """
-  __slots__ = ['d']
-  _slot_types = ['int64']
+  __slots__ = ['d','cmds']
+  _slot_types = ['int64','string[]']
 
   def __init__(self, *args, **kwds):
     """
@@ -23,7 +24,7 @@ class RecordAudioRequest(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       d
+       d,cmds
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -34,8 +35,11 @@ class RecordAudioRequest(genpy.Message):
       #message fields cannot be None, assign default values for those that are
       if self.d is None:
         self.d = 0
+      if self.cmds is None:
+        self.cmds = []
     else:
       self.d = 0
+      self.cmds = []
 
   def _get_types(self):
     """
@@ -50,6 +54,14 @@ class RecordAudioRequest(genpy.Message):
     """
     try:
       buff.write(_struct_q.pack(self.d))
+      length = len(self.cmds)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.cmds:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.pack('<I%ss'%length, length, val1))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -63,6 +75,21 @@ class RecordAudioRequest(genpy.Message):
       start = end
       end += 8
       (self.d,) = _struct_q.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.cmds = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8')
+        else:
+          val1 = str[start:end]
+        self.cmds.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -76,6 +103,14 @@ class RecordAudioRequest(genpy.Message):
     """
     try:
       buff.write(_struct_q.pack(self.d))
+      length = len(self.cmds)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.cmds:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.pack('<I%ss'%length, length, val1))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -90,6 +125,21 @@ class RecordAudioRequest(genpy.Message):
       start = end
       end += 8
       (self.d,) = _struct_q.unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      self.cmds = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8')
+        else:
+          val1 = str[start:end]
+        self.cmds.append(val1)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -104,15 +154,16 @@ import struct
 
 
 class RecordAudioResponse(genpy.Message):
-  _md5sum = "3828ce3375be27c8e17cc56c9dae1451"
+  _md5sum = "9a58cef52490a179d4f321fb1dc501cf"
   _type = "yoloswag/RecordAudioResponse"
   _has_header = False #flag to mark the presence of a Header object
-  _full_text = """string hypothesis
+  _full_text = """string[] hypothesis
+float32 confidence
 
 
 """
-  __slots__ = ['hypothesis']
-  _slot_types = ['string']
+  __slots__ = ['hypothesis','confidence']
+  _slot_types = ['string[]','float32']
 
   def __init__(self, *args, **kwds):
     """
@@ -122,7 +173,7 @@ class RecordAudioResponse(genpy.Message):
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       hypothesis
+       hypothesis,confidence
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -132,9 +183,12 @@ class RecordAudioResponse(genpy.Message):
       super(RecordAudioResponse, self).__init__(*args, **kwds)
       #message fields cannot be None, assign default values for those that are
       if self.hypothesis is None:
-        self.hypothesis = ''
+        self.hypothesis = []
+      if self.confidence is None:
+        self.confidence = 0.
     else:
-      self.hypothesis = ''
+      self.hypothesis = []
+      self.confidence = 0.
 
   def _get_types(self):
     """
@@ -148,12 +202,15 @@ class RecordAudioResponse(genpy.Message):
     :param buff: buffer, ``StringIO``
     """
     try:
-      _x = self.hypothesis
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      buff.write(struct.pack('<I%ss'%length, length, _x))
+      length = len(self.hypothesis)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.hypothesis:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.pack('<I%ss'%length, length, val1))
+      buff.write(_struct_f.pack(self.confidence))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -167,12 +224,21 @@ class RecordAudioResponse(genpy.Message):
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
+      self.hypothesis = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8')
+        else:
+          val1 = str[start:end]
+        self.hypothesis.append(val1)
       start = end
-      end += length
-      if python3:
-        self.hypothesis = str[start:end].decode('utf-8')
-      else:
-        self.hypothesis = str[start:end]
+      end += 4
+      (self.confidence,) = _struct_f.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
@@ -185,12 +251,15 @@ class RecordAudioResponse(genpy.Message):
     :param numpy: numpy python module
     """
     try:
-      _x = self.hypothesis
-      length = len(_x)
-      if python3 or type(_x) == unicode:
-        _x = _x.encode('utf-8')
-        length = len(_x)
-      buff.write(struct.pack('<I%ss'%length, length, _x))
+      length = len(self.hypothesis)
+      buff.write(_struct_I.pack(length))
+      for val1 in self.hypothesis:
+        length = len(val1)
+        if python3 or type(val1) == unicode:
+          val1 = val1.encode('utf-8')
+          length = len(val1)
+        buff.write(struct.pack('<I%ss'%length, length, val1))
+      buff.write(_struct_f.pack(self.confidence))
     except struct.error as se: self._check_types(se)
     except TypeError as te: self._check_types(te)
 
@@ -205,19 +274,29 @@ class RecordAudioResponse(genpy.Message):
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
+      self.hypothesis = []
+      for i in range(0, length):
+        start = end
+        end += 4
+        (length,) = _struct_I.unpack(str[start:end])
+        start = end
+        end += length
+        if python3:
+          val1 = str[start:end].decode('utf-8')
+        else:
+          val1 = str[start:end]
+        self.hypothesis.append(val1)
       start = end
-      end += length
-      if python3:
-        self.hypothesis = str[start:end].decode('utf-8')
-      else:
-        self.hypothesis = str[start:end]
+      end += 4
+      (self.confidence,) = _struct_f.unpack(str[start:end])
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e) #most likely buffer underfill
 
 _struct_I = genpy.struct_I
+_struct_f = struct.Struct("<f")
 class RecordAudio(object):
   _type          = 'yoloswag/RecordAudio'
-  _md5sum = 'bed649305b6ee19b4403c3008fcf992f'
+  _md5sum = '19618e2dbb865e4c55eb07772ccdfd38'
   _request_class  = RecordAudioRequest
   _response_class = RecordAudioResponse

@@ -57,16 +57,21 @@ struct RecordAudioResponse_
   typedef RecordAudioResponse_<ContainerAllocator> Type;
 
   RecordAudioResponse_()
-    : hypothesis()  {
+    : hypothesis()
+    , confidence(0.0)  {
     }
   RecordAudioResponse_(const ContainerAllocator& _alloc)
-    : hypothesis(_alloc)  {
+    : hypothesis(_alloc)
+    , confidence(0.0)  {
     }
 
 
 
-   typedef std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other >  _hypothesis_type;
+   typedef std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > , typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::other >  _hypothesis_type;
   _hypothesis_type hypothesis;
+
+   typedef float _confidence_type;
+  _confidence_type confidence;
 
 
 
@@ -146,12 +151,12 @@ struct MD5Sum< ::yoloswag::RecordAudioResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "3828ce3375be27c8e17cc56c9dae1451";
+    return "9a58cef52490a179d4f321fb1dc501cf";
   }
 
   static const char* value(const ::yoloswag::RecordAudioResponse_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x3828ce3375be27c8ULL;
-  static const uint64_t static_value2 = 0xe17cc56c9dae1451ULL;
+  static const uint64_t static_value1 = 0x9a58cef52490a179ULL;
+  static const uint64_t static_value2 = 0xd4f321fb1dc501cfULL;
 };
 
 template<class ContainerAllocator>
@@ -170,7 +175,8 @@ struct Definition< ::yoloswag::RecordAudioResponse_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "string hypothesis\n\
+    return "string[] hypothesis\n\
+float32 confidence\n\
 \n\
 \n\
 ";
@@ -192,6 +198,7 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.hypothesis);
+      stream.next(m.confidence);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -210,8 +217,14 @@ struct Printer< ::yoloswag::RecordAudioResponse_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::yoloswag::RecordAudioResponse_<ContainerAllocator>& v)
   {
-    s << indent << "hypothesis: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.hypothesis);
+    s << indent << "hypothesis[]" << std::endl;
+    for (size_t i = 0; i < v.hypothesis.size(); ++i)
+    {
+      s << indent << "  hypothesis[" << i << "]: ";
+      Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.hypothesis[i]);
+    }
+    s << indent << "confidence: ";
+    Printer<float>::stream(s, indent + "  ", v.confidence);
   }
 };
 

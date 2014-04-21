@@ -2,7 +2,6 @@ FILE(REMOVE_RECURSE
   "CMakeFiles/yoloswag_generate_messages_cpp"
   "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/include/yoloswag/Velocity.h"
   "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/include/yoloswag/RecordAudio.h"
-  "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/include/yoloswag/AddTwoInts.h"
 )
 
 # Per-language clean rules from dependency scanning.

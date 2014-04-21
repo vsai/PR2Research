@@ -57,16 +57,21 @@ struct RecordAudioRequest_
   typedef RecordAudioRequest_<ContainerAllocator> Type;
 
   RecordAudioRequest_()
-    : d(0)  {
+    : d(0)
+    , cmds()  {
     }
   RecordAudioRequest_(const ContainerAllocator& _alloc)
-    : d(0)  {
+    : d(0)
+    , cmds(_alloc)  {
     }
 
 
 
    typedef int64_t _d_type;
   _d_type d;
+
+   typedef std::vector<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > , typename ContainerAllocator::template rebind<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::other >  _cmds_type;
+  _cmds_type cmds;
 
 
 
@@ -102,7 +107,7 @@ namespace message_traits
 
 
 
-// BOOLTRAITS {'IsFixedSize': True, 'IsMessage': True, 'HasHeader': False}
+// BOOLTRAITS {'IsFixedSize': False, 'IsMessage': True, 'HasHeader': False}
 // {'std_msgs': ['/opt/ros/groovy/share/std_msgs/cmake/../msg'], 'yoloswag': ['/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/msg']}
 
 // !!!!!!!!!!! ['__class__', '__delattr__', '__dict__', '__doc__', '__eq__', '__format__', '__getattribute__', '__hash__', '__init__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_parsed_fields', 'constants', 'fields', 'full_name', 'has_header', 'header_present', 'names', 'package', 'parsed_fields', 'short_name', 'text', 'types']
@@ -112,12 +117,12 @@ namespace message_traits
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::yoloswag::RecordAudioRequest_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::yoloswag::RecordAudioRequest_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -146,12 +151,12 @@ struct MD5Sum< ::yoloswag::RecordAudioRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "456d5ec057ad0a3f8690a01e5c616f91";
+    return "d51782f63141dfbce4a66ec61e781595";
   }
 
   static const char* value(const ::yoloswag::RecordAudioRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x456d5ec057ad0a3fULL;
-  static const uint64_t static_value2 = 0x8690a01e5c616f91ULL;
+  static const uint64_t static_value1 = 0xd51782f63141dfbcULL;
+  static const uint64_t static_value2 = 0xe4a66ec61e781595ULL;
 };
 
 template<class ContainerAllocator>
@@ -171,6 +176,7 @@ struct Definition< ::yoloswag::RecordAudioRequest_<ContainerAllocator> >
   static const char* value()
   {
     return "int64 d\n\
+string[] cmds\n\
 \n\
 ";
   }
@@ -191,6 +197,7 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.d);
+      stream.next(m.cmds);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER;
@@ -211,6 +218,12 @@ struct Printer< ::yoloswag::RecordAudioRequest_<ContainerAllocator> >
   {
     s << indent << "d: ";
     Printer<int64_t>::stream(s, indent + "  ", v.d);
+    s << indent << "cmds[]" << std::endl;
+    for (size_t i = 0; i < v.cmds.size(); ++i)
+    {
+      s << indent << "  cmds[" << i << "]: ";
+      Printer<std::basic_string<char, std::char_traits<char>, typename ContainerAllocator::template rebind<char>::other > >::stream(s, indent + "  ", v.cmds[i]);
+    }
   }
 };
 

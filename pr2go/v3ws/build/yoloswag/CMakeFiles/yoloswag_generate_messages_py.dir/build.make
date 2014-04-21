@@ -44,7 +44,6 @@ include yoloswag/CMakeFiles/yoloswag_generate_messages_py.dir/progress.make
 
 yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/_Velocity.py
 yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_RecordAudio.py
-yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py
 yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py
 yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py
 
@@ -60,32 +59,23 @@ yoloswag/CMakeFiles/yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python code from SRV yoloswag/RecordAudio"
 	cd /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/yoloswag && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/RecordAudio.srv -Iyoloswag:/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/cmake/../msg -p yoloswag -o /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv
 
-/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py: /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/gensrv_py.py
-/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python code from SRV yoloswag/AddTwoInts"
-	cd /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/yoloswag && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv -Iyoloswag:/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/msg -Istd_msgs:/opt/ros/groovy/share/std_msgs/cmake/../msg -p yoloswag -o /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv
-
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py: /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/genmsg_py.py
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/_Velocity.py
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_RecordAudio.py
-/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python msg __init__.py for yoloswag"
 	cd /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/yoloswag && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg --initpy
 
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py: /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/genmsg_py.py
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/_Velocity.py
 /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_RecordAudio.py
-/home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/CMakeFiles $(CMAKE_PROGRESS_5)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Generating Python srv __init__.py for yoloswag"
 	cd /home/vishalsai/Documents/PR2Research/pr2go/v3ws/build/yoloswag && ../catkin_generated/env_cached.sh /usr/bin/python /opt/ros/groovy/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv --initpy
 
 yoloswag_generate_messages_py: yoloswag/CMakeFiles/yoloswag_generate_messages_py
 yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/_Velocity.py
 yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_RecordAudio.py
-yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/_AddTwoInts.py
 yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/msg/__init__.py
 yoloswag_generate_messages_py: /home/vishalsai/Documents/PR2Research/pr2go/v3ws/devel/lib/python2.7/dist-packages/yoloswag/srv/__init__.py
 yoloswag_generate_messages_py: yoloswag/CMakeFiles/yoloswag_generate_messages_py.dir/build.make

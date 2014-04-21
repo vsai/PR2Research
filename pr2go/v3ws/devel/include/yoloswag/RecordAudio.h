@@ -73,7 +73,7 @@ template<>
 struct MD5Sum< ::yoloswag::RecordAudio > {
   static const char* value()
   {
-    return "bed649305b6ee19b4403c3008fcf992f";
+    return "19618e2dbb865e4c55eb07772ccdfd38";
   }
 
   static const char* value(const ::yoloswag::RecordAudio&) { return value(); }

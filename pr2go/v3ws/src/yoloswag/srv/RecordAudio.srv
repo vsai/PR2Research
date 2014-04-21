@@ -2,3 +2,4 @@ int64 d
 string[] cmds
 ---
 string[] hypothesis
+float32 confidence

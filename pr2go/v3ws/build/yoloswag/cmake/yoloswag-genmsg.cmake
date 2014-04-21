@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "yoloswag: 1 messages, 2 services")
+message(STATUS "yoloswag: 1 messages, 1 services")
 
 set(MSG_I_FLAGS "-Iyoloswag:/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/msg;-Istd_msgs:/opt/ros/groovy/share/std_msgs/cmake/../msg")
 
@@ -27,12 +27,6 @@ _generate_msg_cpp(yoloswag
 ### Generating Services
 _generate_srv_cpp(yoloswag
   "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/RecordAudio.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/yoloswag
-)
-_generate_srv_cpp(yoloswag
-  "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/yoloswag
@@ -72,12 +66,6 @@ _generate_srv_lisp(yoloswag
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/yoloswag
 )
-_generate_srv_lisp(yoloswag
-  "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/yoloswag
-)
 
 ### Generating Module File
 _generate_module_lisp(yoloswag
@@ -109,12 +97,6 @@ _generate_msg_py(yoloswag
 ### Generating Services
 _generate_srv_py(yoloswag
   "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/RecordAudio.srv"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/yoloswag
-)
-_generate_srv_py(yoloswag
-  "/home/vishalsai/Documents/PR2Research/pr2go/v3ws/src/yoloswag/srv/AddTwoInts.srv"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/yoloswag
