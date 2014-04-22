@@ -1,5 +1,0 @@
-windows.lo windows.o: windows.c sfconfig.h config.h
-
-sfconfig.h:
-
-config.h:
