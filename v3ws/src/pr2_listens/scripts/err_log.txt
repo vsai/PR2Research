@@ -1,0 +1,39 @@
+etting up environment of files and folders
+Initializing rospy audio server
+STARTED TIMEOUT_STREAM THREAD
+RECEIVED PING FROM CLIENT YES
+s_callback
+Response: {"status":0,"id":"","hypotheses":[{"utterance":"up up left left right","confidence":0.7663694}]}
+
+{u'status': 0, u'hypotheses': [{u'confidence': 0.7663694, u'utterance': u'up up left left right'}], u'id': u''}
+RECEIVED PING FROM CLIENT YES
+s_callback
+Response: {"status":5,"id":"","hypotheses":[]}
+
+{u'status': 5, u'hypotheses': [], u'id': u''}
+s_callback
+Response: {"status":5,"id":"","hypotheses":[]}
+{"status":5,"id":"","hypotheses":[]}
+
+
+
+
+
+Traceback (most recent call last):
+  File "./record_audio_server.py", line 49, in s_callback
+    r = speechText.speech_to_txt(flac)
+  File "/home/vishalsai/Documents/PR2Research/v3ws/src/pr2_listens/scripts/speech_to_text.py", line 15, in speech_to_txt
+    return json.loads(r)
+  File "/usr/lib/python2.7/json/__init__.py", line 326, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python2.7/json/decoder.py", line 369, in decode
+    raise ValueError(errmsg("Extra data", s, end, len(s)))
+ValueError: Extra data: line 2 column 1 - line 3 column 1 (char 37 - 74)
+Traceback (most recent call last):
+  File "./record_audio_server.py", line 105, in <module>
+    record_audio_server()
+  File "./record_audio_server.py", line 95, in record_audio_server
+    rospy.spin()
+  File "/opt/ros/groovy/lib/python2.7/dist-packages/rospy/client.py", line 128, in spin
+    rospy.rostime.wallsleep(0.5)
+ValueError
