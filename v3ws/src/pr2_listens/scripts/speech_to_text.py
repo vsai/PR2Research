@@ -11,8 +11,12 @@ def speech_to_txt(flac_filename):
   request = urllib2.Request(url, data=audio, headers=headers)
   response = urllib2.urlopen(request)
   r = response.read()
-  print "Response: %s"%(r) 
-  return json.loads(r)
+  print "Response: %s"%(r)
+  try:
+    return json.loads(r)
+  except ValueError:
+    print "Speech API json.loads ValueError"
+    return json.loads(json.dumps({}))
 
 if __name__ == "__main__":
   if (len(sys.argv) < 2):

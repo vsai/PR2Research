@@ -24,9 +24,9 @@ def generateNoiseProfile():
   return
 
 def record_blocking(seconds, filename):
-  CHUNK = 1024
+  CHUNK = 44100 #1024
   FORMAT = pyaudio.paInt16
-  CHANNELS = 2
+  CHANNELS = 1 # 2
   RATE = 44100
   assert (seconds > 0 and seconds < 15)
   p = pyaudio.PyAudio()
@@ -58,6 +58,7 @@ def record_blocking(seconds, filename):
 
 def clean_audio(output, clean, flac):
   #Process the output file and clean it and provide a  resampled flac file
-  os.system('sox ' + output + ' ' + clean + ' noisered ' + path_to_speech_profile + ' 0.2')
+  os.system('sox ' + output + ' ' + clean + ' noisered ' + path_to_speech_profile + ' 0.3')
   #os.system('sox {0} {1} noisered {2} 0.2'%(output, clean, path_to_speech_profile))
-  os.system('sox ' + clean + ' ' + flac + ' remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither')
+  #os.system('sox ' + clean + ' ' + flac + ' remix - norm -3 highpass 22 gain -3 rate 16k norm -3 dither')
+  os.system('sox ' + clean + ' ' + flac + ' highpass 22 gain -2 rate 16k')

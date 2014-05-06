@@ -20,9 +20,10 @@ base_dir = os.path.join(os.getcwd(), 'files/')
 STREAM_TIMEOUT_TIME = 10 #seconds
 
 FORMAT = pyaudio.paInt16
-CHANNELS = 2
+#CHANNELS = 2
+CHANNELS = 1
 RATE = 44100
-CHUNK = RATE*5
+CHUNK = RATE* 4 #5
 
 p = pyaudio.PyAudio()
 stream = None
@@ -78,7 +79,7 @@ def record_audio_server():
     record_wave(output, in_data)
     audioProcess.clean_audio(output, clean, flac)
     r = speechText.speech_to_txt(flac)
-    hypotheses = r.get('hypotheses')
+    hypotheses = r.get('hypotheses', [])
     utterance = ''
     confidence = 0
     if (len(hypotheses) > 0):
